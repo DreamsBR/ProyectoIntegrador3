@@ -1,0 +1,125 @@
+<app-menu></app-menu>
+<link rel="stylesheet" href="./empleado.component.css" media="only screen and (max-width: 700px)">
+<div class="container" id="estilohtml">
+    <div class="col-sm-12">
+        <div class="d-flex">
+            <div class="col-lg-12 fondotabla">
+                <h2>Lista de Empleado</h2>
+                <div align="center">
+                    <a href="javascript:abrirNR()"><button class="btnNregistro">Nuevo Registro</button></a>
+                </div>
+                <br><br>
+                <div id="scroll">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>DNI</th>
+                                <th>Fecha</th>
+                                <th>Direccion</th>
+                                <th>Email</th>
+                                <th>Telefono</th>
+                                <th>Cargo</th>
+                                <th>Estado</th>
+                                <th>Editar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let Dempleado of empleado, let i=index">
+                                <td>{{Dempleado.nom_emp}}</td>
+                                <td>{{Dempleado.apell_emp}}</td>
+                                <td>{{Dempleado.dni_emp}}</td>
+                                <td>{{Dempleado.fech_emp}}</td>
+                                <td>{{Dempleado.direc_emp}}</td>
+                                <td>{{Dempleado.email_emp}}</td>
+                                <td>{{Dempleado.telef_emp}}</td>
+                                <td>{{Dempleado.cargo.nomb_car}}</td>
+                                <td>{{Dempleado.estado_emp}}</td>
+                                <td>
+                                    <a href="javascript:HabBtnAct() & abrirNR()"><button (click)="Blockbtn=true" class="btnedit"
+                                        (click)="Editar(Dempleado)">
+                                    <img src="https://i.pinimg.com/originals/fd/a6/f4/fda6f4b3faab0e50ecf136a437f27aaa.png">
+                                    </button></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-12 ventanaNR" id="ventAdd">
+    <h2 [hidden]="Blockbtn">Registrar Empleado</h2>
+    <h2 [hidden]="!Blockbtn">Actualizar Empleado</h2>
+    <br><br>
+    <div class="container form-body row">
+        <div class="col-md-6">
+            <div class="form-body">
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="Dempleado.nom_emp" placeholder="Nombre del Empleado" id="nom_emp" name="nom_emp" class="input100">
+                    <span class="focus-efecto"></span>
+                </div>
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="Dempleado.apell_emp" placeholder="Apellidos" id="apell_emp" name="apell_emp" class="input100">
+                    <span class="focus-efecto"></span>
+                </div>
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="Dempleado.dni_emp" placeholder="DNI" id="dni_emp" name="dni_emp" class="input100">
+                    <span class="focus-efecto"></span>
+                </div>
+                <label id="lblFecha">Fecha de Ingreso</label>
+                <div class="form-group" id="fecha">
+                    <input type="date" [(ngModel)]="Dempleado.fech_emp" id="fech_emp" name="fech_emp" class="input100">
+                    <span class="focus-efecto"></span>
+                </div>
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="Dempleado.direc_emp" placeholder="Dirección" id="direc_emp" name="direc_emp" class="input100">
+                    <span class="focus-efecto"></span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-body">
+                <div class="form-group">
+                    <input type="email" [(ngModel)]="Dempleado.email_emp" placeholder="Email" id="email_emp" name="email_emp" class="input100">
+                    <span class="focus-efecto"></span>
+                </div>
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="Dempleado.telef_emp" placeholder="Teléfono" id="telef_emp" name="telef_emp" class="input100">
+                    <span class="focus-efecto"></span>
+                </div>
+                <div class="form-group">
+                    <!--<input type="number" [(ngModel)]="Dempleado.id_cargo" id="id_cargo" name="id_cargo">-->
+                    <!-- <select id="selectlist" onchange="capturadatos();" name="id_cargo" class="input100">
+                    <option  *ngFor="let Dcargo of cargo; let i = index" [value]="cargo[i].id_cargo"
+                                [selected]="cargo[i].id_cargo === Dempleado.id_cargo">
+                                {{cargo[i].nomb_car}} codigo: {{cargo[i].id_cargo}}
+                            </option>
+                    </select>-->
+                    <select [(ngModel)]="cargoselect" name="cargoselect" id="id_cargo">
+                        <option *ngFor="let Dcargo of cargo" [ngValue]="Dcargo.id_cargo">
+                            {{Dcargo.nomb_car}}
+                        </option>
+                    </select>
+                    <span class="focus-efecto"></span>
+                </div>
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="Dempleado.estado_emp" placeholder="Estado" id="estado_emp" name="estado_emp" class="input100">
+                    <span class="focus-efecto"></span>
+                </div>
+                <div align="center">
+                    <div id="btnAdd">
+                        <button [disabled]="Blockbtn" class="btnadd" (click)="registrar(Dempleado)">Registrar</button>&nbsp;&nbsp;
+                        <button class="btncancelar" (click)="Cancelar()">Cancelar</button>
+                    </div>
+                    <div id="btnAct">
+                        <button [disabled]="!Blockbtn" class="btnactualizar" (click)="GuardarEdit(Dempleado)">Actualizar</button>&nbsp;&nbsp;
+                        <button class="btncancelar" (click)="Cancelar()">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

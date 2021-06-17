@@ -1,0 +1,150 @@
+<app-menu></app-menu>
+<link rel="stylesheet" href="./cargo.component.css" media="only screen and (max-width: 700px)">
+<div class="container" id="estilohtml">
+    <div class="col-sm-12" id="ocultar">
+        <div class="d-flex">
+            <div class="col-sm-4 fondoregistro">
+                <h2>Registrar Cargos</h2>
+                <br><br>
+                <div class="form-body">
+                    <div class="form-group">
+                        <input type="text" [(ngModel)]="Dcargo.nomb_car" placeholder="Nombre del Cargo" id="nomb_car" name="nomb_car" class="input100">
+                        <span class="focus-efecto"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" [(ngModel)]="Dcargo.sueldo_car" placeholder="Sueldo" id="sueldo_car" name="sueldo_car" class="input100">
+                        <span class="focus-efecto"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" [(ngModel)]="Dcargo.descrip_car" placeholder="Descripción" id="descrip_car" name="descrip_car" class="input100">
+                        <span class="focus-efecto"></span>
+                    </div>
+                    <br><br>
+                    <div align="center">
+                        <div id="btnAdd">
+                            <button [disabled]="Blockbtn" class="btnadd" (click)="registrar(Dcargo)">Registrar</button>
+                            <button class="btncancelar" (click)="Cancelar()">Cancelar</button>
+                        </div>
+                        <div id="btnAct">
+                            <button [disabled]="!Blockbtn" class="btnactualizar" (click)="GuardarEdit(Dcargo)">Actualizar</button>
+                            <button class="btncancelar" (click)="Cancelar()">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>&nbsp;&nbsp;
+            <div class="col-lg-1" id="ocultar"></div>
+            <div class="col-lg-7 fondotabla" id="ocultar">
+                <h2>Lista</h2>
+                <br><br>
+                <div id="scroll">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Cargo</th>
+                                <th>Sueldo</th>
+                                <th>Descripcion</th>
+                                <th>Editar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let Dcargo of cargo">
+                                <td>{{Dcargo.nomb_car}}</td>
+                                <td>S./ {{Dcargo.sueldo_car}}</td>
+                                <td>{{Dcargo.descrip_car}}</td>
+                                <td>
+                                    <a href="javascript:HabBtnAct()"><button (click)="Blockbtn=true" class="btnedit"
+                                        (click)="Editar(Dcargo)">
+                                    <img src="https://i.pinimg.com/originals/fd/a6/f4/fda6f4b3faab0e50ecf136a437f27aaa.png">
+                                    </button></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="col-lg-12 fondotablaRespon" id="mostrar">
+        <h2>Lista de Cargos</h2>
+        <br><br>
+        <div id="scroll">
+            <table class="table table">
+                <thead>
+                    <tr>
+                        <th>Cargo</th>
+                        <th>Sueldo</th>
+                        <th>Descripcion</th>
+                        <th>Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let Dcargo of cargo">
+                        <td>{{Dcargo.nomb_car}}</td>
+                        <td>S./ {{Dcargo.sueldo_car}}</td>
+                        <td><textarea disabled>{{Dcargo.descrip_car}}</textarea></td>
+                        <td>
+                            <a href="javascript:abrirEdit() & abrirNR()"><button (click)="Blockbtn=true" class="btneditRespon"
+                                (click)="Editar(Dcargo)">
+                            <img src="https://i.pinimg.com/originals/fd/a6/f4/fda6f4b3faab0e50ecf136a437f27aaa.png">
+                            </button></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div align="center">
+            <a href="javascript:abrirNR()"><button class="btnNregistro">Nuevo Registro</button></a>
+        </div>
+
+    </div>
+</div>
+
+<div class="ventanaNR" id="ventAdd">
+    <h2>Actualizar Cargos</h2>
+    <br><br>
+    <div class="form-body">
+        <div class="form-body">
+            <div class="form-group">
+                <input type="text" [(ngModel)]="Dcargo.nomb_car" placeholder="Nombre del Cargo" id="nomb_car" name="nomb_car" class="input100">
+                <span class="focus-efecto"></span>
+            </div>
+            <div class="form-group">
+                <input type="number" [(ngModel)]="Dcargo.sueldo_car" placeholder="Sueldo" id="sueldo_car" name="sueldo_car" class="input100">
+                <span class="focus-efecto"></span>
+            </div>
+            <div class="form-group">
+                <input type="text" [(ngModel)]="Dcargo.descrip_car" placeholder="Descripción" id="descrip_car" name="descrip_car" class="input100">
+                <span class="focus-efecto"></span>
+            </div>
+            <br>
+            <div align="center">
+                <button [disabled]="Blockbtn" class="btnadd" (click)="registrar(Dcargo)">Registrar</button>&nbsp;&nbsp;
+                <button class="btncancelar" (click)="Cancelar()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    <div class="ventanaEdit" id="ventEdit">
+        <h2>Editar Cargos</h2>
+        <br><br>
+        <div class="form-body">
+            <div class="form-body">
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="Dcargo.nomb_car" placeholder="Nombre del Cargo" id="nomb_car" name="nomb_car" class="input100">
+                    <span class="focus-efecto"></span>
+                </div>
+                <div class="form-group">
+                    <input type="number" [(ngModel)]="Dcargo.sueldo_car" placeholder="Sueldo" id="sueldo_car" name="sueldo_car" class="input100">
+                    <span class="focus-efecto"></span>
+                </div>
+                <div class="form-group">
+                    <input type="text" [(ngModel)]="Dcargo.descrip_car" placeholder="Descripción" id="descrip_car" name="descrip_car" class="input100">
+                    <span class="focus-efecto"></span>
+                </div>
+                <br>
+                <div align="center">
+                    <button [disabled]="!Blockbtn" class="btnactualizar" (click)="GuardarEdit(Dcargo)">Actualizar</button>&nbsp;&nbsp;
+                    <button class="btncancelar" (click)="Cancelar()">Cancelar</button>
+                </div>
+            </div>
+        </div>

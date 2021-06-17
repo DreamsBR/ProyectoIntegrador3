@@ -1,0 +1,113 @@
+<app-menu></app-menu>
+<link rel="stylesheet" href="./chofer.component.css" media="only screen and (max-width: 700px)">
+<div class="container" id="estilohtml">
+    <div class="col-sm-12">
+        <div class="d-flex">
+            <div class="col-lg-12 fondotabla">
+                <h2>Lista de Chofer</h2>
+                <div align="center">
+                    <a href="javascript:abrirNR()"><button class="btnNregistro">Nuevo Registro</button></a>
+                </div>
+                <br><br>
+                <div id="scroll">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>DNI</th>
+                                <th>Sexo</th>
+                                <th>Dirección</th>
+                                <th>Teléfono</th>
+                                <th>Email</th>
+                                <th>Nro brevete</th>
+                                <th>Vehiculo</th>
+                                <th>Editar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let Dchofer of chofer">
+                                <td>{{Dchofer.nomb_chof}}</td>
+                                <td>{{Dchofer.apell_chof}}</td>
+                                <td>{{Dchofer.dni_chofer}}</td>
+                                <td>{{Dchofer.sexo_chof}}</td>
+                                <td><input type="text" value="{{Dchofer.direc_chof}}" disabled></td>
+                                <td>{{Dchofer.telef_chof}}</td>
+                                <td><input type="text" value="{{Dchofer.email_chof}}" disabled></td>
+                                <td>{{Dchofer.n_brevete}}</td>
+                                <td>{{Dchofer.id_vehiculo}}</td>
+                                <td>
+                                    <a href="javascript:HabBtnAct() & abrirNR()"><button (click)="Blockbtn=true" class="btnedit"
+                                        (click)="Editar(Dchofer)">
+                                    <img src="https://i.pinimg.com/originals/fd/a6/f4/fda6f4b3faab0e50ecf136a437f27aaa.png">
+                                    </button></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-12 ventanaNR" id="ventAdd">
+    <h2 [hidden]="Blockbtn">Registrar Chofer</h2>
+    <h2 [hidden]="!Blockbtn">Actualizar chofer</h2>
+    <br><br>
+    <div class="container form-body row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <input type="text" [(ngModel)]="Dchofer.nomb_chof" placeholder="Nombre del Chofer" id="nomb_chof" name="nomb_chof" class="input100">
+                <span class="focus-efecto"></span>
+            </div>
+            <div class="form-group">
+                <input type="text" [(ngModel)]="Dchofer.apell_chof" placeholder="Apellidos" id="apell_chof" name="apell_chof" class="input100">
+                <span class="focus-efecto"></span>
+            </div>
+            <div class="form-group">
+                <input type="text" [(ngModel)]="Dchofer.dni_chofer" placeholder="DNI" id="dni_chofer" name="dni_chofer" class="input100">
+                <span class="focus-efecto"></span>
+            </div>
+            <div class="form-group">
+                <select [(ngModel)]="Dchofer.sexo_chof" name="sexo_chof" class="input100" [value]="Dchofer.sexo_chof">
+                    <option value="Hombre">Hombre</option>
+                    <option value="Mujer">Mujer</option>
+                  </select>
+                <span class="focus-efecto"></span>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <input type="text" [(ngModel)]="Dchofer.direc_chof" placeholder="Dirección" id="direc_chof" name="direc_chof" class="input100">
+                <span class="focus-efecto"></span>
+            </div>
+            <div class="form-group">
+                <input type="text" [(ngModel)]="Dchofer.telef_chof" placeholder="Teléfono" id="telef_chof" name="telef_chof" class="input100">
+                <span class="focus-efecto"></span>
+            </div>
+            <div class="form-group">
+                <input type="text" [(ngModel)]="Dchofer.email_chof" placeholder="Email" id="email_chof" name="email_chof" class="input100">
+                <span class="focus-efecto"></span>
+            </div>
+            <div class="form-group">
+                <input type="text" [(ngModel)]="Dchofer.n_brevete" placeholder="Nro Brevete" id="n_brevete" name="n_brevete" class="input100">
+                <span class="focus-efecto"></span>
+            </div>
+            <div class="form-group">
+                <input type="number" [(ngModel)]="Dchofer.id_vehiculo" placeholder="vehiculo" id="id_vehiculo" name="id_vehiculo" class="input100">
+                <span class="focus-efecto"></span>
+            </div>
+        </div>
+        <br>
+        <div>
+            <div id="btnAdd" align="left">
+                <button [disabled]="Blockbtn" class="btnadd" (click)="registrar(Dchofer)">Registrar</button>&nbsp;&nbsp;
+                <button class="btncancelar" (click)="Cancelar()">Cancelar</button>
+            </div>
+            <div align="center" id="btnAct">
+                <button [disabled]="!Blockbtn" class="btnactualizar" (click)="GuardarEdit(Dchofer)">Actualizar</button>&nbsp;&nbsp;
+                <button class="btncancelar" (click)="Cancelar()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

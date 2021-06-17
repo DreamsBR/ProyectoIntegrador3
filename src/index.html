@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <title>Remiseria Sudamericana</title>
+    <base href="/">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    
+</head>
+
+<body id="cuerpo">
+    <app-root></app-root>
+</body>
+
+<script type="text/javascript">
+    function abrirNR() {
+        document.getElementById("ventAdd").style.display = "block";
+    }
+    function abrirEdit(){
+        document.getElementById("ventEdit").style.display = "block";
+    }
+    function cerrar() {
+        document.getElementById("ventAdd").style.display = "none";
+    }
+    function HabBtnAct(){
+        document.getElementById("btnAct").style.display="block"
+        document.getElementById("btnAdd").style.display="none"
+    }
+    function capturadatos(){
+        let d=document.getElementById("selectlist");
+        let displaytext=d.options[d.selectedIndex].value;
+        document.getElementById("id_cargo").value=displaytext;
+    }
+    
+</script>
+
+</html>

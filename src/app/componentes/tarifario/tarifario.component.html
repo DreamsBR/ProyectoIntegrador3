@@ -1,0 +1,145 @@
+<app-menu></app-menu>
+<link rel="stylesheet" href="./tarifario.component.css" media="only screen and (max-width: 700px)">
+<div class="container" id="tarifariohtml">
+    <div class="col-sm-12" id="ocultar">
+        <div class="d-flex">
+            <div class="col-sm-4 fondoregistro">
+                <h2>Registrar Tarifario</h2>
+                <br><br>
+                <div class="form-body">
+                    <div class="form-group">
+                        <input type="text" [(ngModel)]="Dtarifario.origen" placeholder="Origen" id="origen" name="origen" class="input100">
+                        <span class="focus-efecto"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" [(ngModel)]="Dtarifario.destino" placeholder="Destino" id="destino" name="destino" class="input100">
+                        <span class="focus-efecto"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="number" [(ngModel)]="Dtarifario.monto" placeholder="Monto" id="monto" name="monto" class="input100">
+                        <span class="focus-efecto"></span>
+                    </div>
+                    <br>
+                    <div align="center">
+                        <div id="btnAdd">
+                            <button [disabled]="Blockbtn" class="btnadd" (click)="registrar(Dtarifario)">Registrar</button>
+                            <button class="btncancelar" (click)="Cancelar()">Cancelar</button>
+                        </div>
+                        <div id="btnAct">
+                            <button [disabled]="!Blockbtn" class="btnactualizar" (click)="GuardarEdit(Dtarifario)">Actualizar</button>
+                            <button class="btncancelar" (click)="Cancelar()">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>&nbsp;&nbsp;
+            <div class="col-lg-1" id="ocultar"></div>
+            <div class="col-lg-7 fondotabla" id="ocultar">
+                <h2>Lista</h2>
+                <br><br>
+                <div id="scroll">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Origen</th>
+                                <th>Destino</th>
+                                <th>Monto</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let Dtarifario of tarifario">
+                                <td>{{Dtarifario.origen}}</td>
+                                <td>{{Dtarifario.destino}}</td>
+                                <td>{{Dtarifario.monto}}</td>
+                                <td>
+                                    <a href="javascript:HabBtnAct()"><button (click)="Blockbtn=true" class="btnedit"
+                                        (click)="Editar(Dtarifario)">
+                                    <img src="https://i.pinimg.com/originals/fd/a6/f4/fda6f4b3faab0e50ecf136a437f27aaa.png">
+                                    </button></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 fondotablaRespon" id="mostrar">
+        <h2>Lista de Tarifario</h2>
+        <br><br>
+        <div id="scroll">
+            <table class="table table">
+                <thead>
+                    <tr>
+                        <th>Origen</th>
+                        <th>Destino</th>
+                        <th>Monto</th>
+                        <th>Opciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let Dtarifario of tarifario">
+                        <td>{{Dtarifario.origen}}</td>
+                        <td>{{Dtarifario.destino}}</td>
+                        <td>{{Dtarifario.monto}}</td>
+                        <td>
+                            <a href="javascript:abrirEdit() & abrirNR()"><button (click)="Blockbtn=true" class="btneditRespon"
+                                (click)="Editar(Dtarifario)">
+                            <img src="https://i.pinimg.com/originals/fd/a6/f4/fda6f4b3faab0e50ecf136a437f27aaa.png">
+                            </button></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div align="center">
+            <a href="javascript:abrirNR()"><button class="btnNregistro">Nuevo Registro</button></a>
+        </div>
+    </div>
+</div>
+<div class="ventanaNR" id="ventAdd">
+    <h2>Registrar Tarifario</h2>
+    <br><br>
+    <div class="form-body">
+        <div class="form-group">
+            <input type="text" [(ngModel)]="Dtarifario.origen" placeholder="Origen" id="origen" name="origen" class="input100">
+            <span class="focus-efecto"></span>
+        </div>
+        <div class="form-group">
+            <input type="text" [(ngModel)]="Dtarifario.destino" placeholder="Destino" id="destino" name="destino" class="input100">
+            <span class="focus-efecto"></span>
+        </div>
+        <div class="form-group">
+            <input type="number" [(ngModel)]="Dtarifario.monto" placeholder="Monto" id="monto" name="monto" class="input100">
+            <span class="focus-efecto"></span>
+        </div>
+        <br>
+        <div align="center">
+            <button [disabled]="Blockbtn" class="btnadd" (click)="registrar(Dtarifario)">Registrar</button>&nbsp;&nbsp;
+            <button class="btncancelar" (click)="Cancelar()">Cancelar</button>
+        </div>
+    </div>
+</div>
+<div class="ventanaEdit" id="ventEdit">
+    <h2>Editar Tarifario</h2>
+    <br><br>
+    <div class="form-body">
+        <div class="form-group">
+            <input type="text" [(ngModel)]="Dtarifario.origen" placeholder="Origen" id="origen" name="origen" class="input100">
+            <span class="focus-efecto"></span>
+        </div>
+        <div class="form-group">
+            <input type="text" [(ngModel)]="Dtarifario.destino" placeholder="Destino" id="destino" name="destino" class="input100">
+            <span class="focus-efecto"></span>
+        </div>
+        <div class="form-group">
+            <input type="number" [(ngModel)]="Dtarifario.monto" placeholder="Monto" id="monto" name="monto" class="input100">
+            <span class="focus-efecto"></span>
+        </div>
+        <br>
+        <div align="center">
+            <button [disabled]="!Blockbtn" class="btnactualizar" (click)="GuardarEdit(Dtarifario)">Actualizar</button>&nbsp;&nbsp;
+            <button class="btncancelar" (click)="Cancelar()">Cancelar</button>
+        </div>
+    </div>
+</div>

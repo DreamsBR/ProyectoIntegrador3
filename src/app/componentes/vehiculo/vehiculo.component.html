@@ -1,0 +1,168 @@
+<app-menu></app-menu>
+<link rel="stylesheet" href="./vehiculo.component.css" media="only screen and (max-width: 700px)">
+<div class="container" id="vehiculohtml">
+    <div class="col-sm-12" id="ocultar">
+        <div class="d-flex">
+            <div class="col-sm-4 fondoregistro">
+                <h2>Registrar Vehiculos</h2>
+                <br><br>
+                <div class="form-body">
+                    <div class="form-group">
+                        <input type="text" [(ngModel)]="Dvehiculo.tipo" placeholder="Tipo de Vehiculo" id="tipo" name="tipo" class="input100">
+                        <span class="focus-efecto"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" [(ngModel)]="Dvehiculo.matricula" placeholder="Matricula" id="matricula" name="matricula" class="input100">
+                        <span class="focus-efecto"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" [(ngModel)]="Dvehiculo.modelo" placeholder="Modelo" id="modelo" name="modelo" class="input100">
+                        <span class="focus-efecto"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" [(ngModel)]="Dvehiculo.marca" placeholder="Marca" id="marca" name="marca" class="input100">
+                        <span class="focus-efecto"></span>
+                    </div>
+                    <br>
+                    <div align="center">
+                        <div id="btnAdd">
+                            <button [disabled]="Blockbtn" class="btnadd" (click)="registrar(Dvehiculo)">Registrar</button>
+                            <!--  <button [disabled]="!Blockbtn" class="btn btn-success" (click)="GuardarEdit(Dvehiculo)">Actualizar</button>&nbsp;&nbsp;-->
+                            <button class="btncancelar" (click)="Cancelar()">Cancelar</button>
+                        </div>
+                        <div id="btnAct">
+                            <button [disabled]="!Blockbtn" class="btnactualizar" (click)="GuardarEdit(Dvehiculo)">Actualizar</button>
+                            <button class="btncancelar" (click)="Cancelar()">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>&nbsp;&nbsp;
+            <div class="col-lg-1" id="ocultar"></div>
+            <div class="col-lg-7 fondotabla" id="ocultar">
+                <h2>Lista</h2>
+                <br><br>
+                <div id="scroll">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Tipo</th>
+                                <th>Matricula</th>
+                                <th>Modelo</th>
+                                <th>Marca</th>
+                                <th>Editar</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let Dvehiculo of vehiculo">
+                                <td>{{Dvehiculo.tipo}}</td>
+                                <td>{{Dvehiculo.matricula}}</td>
+                                <td>{{Dvehiculo.modelo}}</td>
+                                <td>{{Dvehiculo.marca}}</td>
+                                <td>
+                                    <a href="javascript:HabBtnAct()"><button (click)="Blockbtn=true" class="btnedit"
+                                        (click)="Editar(Dvehiculo)">
+                                    <img src="https://i.pinimg.com/originals/fd/a6/f4/fda6f4b3faab0e50ecf136a437f27aaa.png">
+                                    </button></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-12 fondotablaRespon" id="mostrar">
+        <h2>Lista de Vehiculos</h2>
+        <br><br>
+        <div id="scroll">
+            <table class="table table">
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Matricula</th>
+                        <th>Modelo</th>
+                        <th>Marca</th>
+                        <th>Editar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let Dvehiculo of vehiculo">
+                        <td>{{Dvehiculo.tipo}}</td>
+                        <td>{{Dvehiculo.matricula}}</td>
+                        <td>{{Dvehiculo.modelo}}</td>
+                        <td>{{Dvehiculo.marca}}</td>
+                        <td>
+                            <a href="javascript:abrirEdit() & abrirNR()"><button (click)="Blockbtn=true" class="btneditRespon"
+                                (click)="Editar(Dvehiculo)">
+                            <img src="https://i.pinimg.com/originals/fd/a6/f4/fda6f4b3faab0e50ecf136a437f27aaa.png">
+                            </button></a>
+                            <!-- <button (click)="Blockbtn=true" class="btn btn-warning" (click)="Editar(Dvehiculo)">Editar</button>-->
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div align="center">
+            <a href="javascript:abrirNR()"><button class="btnNregistro">Nuevo Registro</button></a>
+        </div>
+    </div>
+</div>
+<div class="ventanaNR" id="ventAdd">
+    <h2>Registrar Vehiculos</h2>
+    <br><br>
+    <div class="form-body">
+        <div class="form-body">
+            <div class="form-group">
+                <input type="text" [(ngModel)]="Dvehiculo.tipo" placeholder="Tipo de Vehiculo" id="tipo" name="tipo" class="input100">
+                <span class="focus-efecto"></span>
+            </div>
+            <div class="form-group">
+                <input type="text" [(ngModel)]="Dvehiculo.matricula" placeholder="matricula" id="matricula" name="matricula" class="input100">
+                <span class="focus-efecto"></span>
+            </div>
+            <div class="form-group">
+                <input type="text" [(ngModel)]="Dvehiculo.modelo" placeholder="modelo" id="modelo" name="modelo" class="input100">
+                <span class="focus-efecto"></span>
+            </div>
+            <div class="form-group">
+                <input type="text" [(ngModel)]="Dvehiculo.marca" placeholder="marca" id="marca" name="marca" class="input100">
+                <span class="focus-efecto"></span>
+            </div>
+            <br>
+            <div align="center">
+                <button [disabled]="Blockbtn" class="btnadd" (click)="registrar(Dvehiculo)">Registrar</button>&nbsp;&nbsp;
+                <!--  <button [disabled]="!Blockbtn" class="btn btn-success" (click)="GuardarEdit(Dvehiculo)">Actualizar</button>&nbsp;&nbsp;-->
+                <button class="btncancelar" (click)="Cancelar()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="ventanaEdit" id="ventEdit">
+    <h2>Editar Vehiculos</h2>
+    <br><br>
+    <div class="form-body">
+        <div class="form-body">
+            <div class="form-group">
+                <input type="text" [(ngModel)]="Dvehiculo.tipo" placeholder="Tipo de Vehiculo" id="tipo" name="tipo" class="input100">
+                <span class="focus-efecto"></span>
+            </div>
+            <div class="form-group">
+                <input type="text" [(ngModel)]="Dvehiculo.matricula" placeholder="matricula" id="matricula" name="matricula" class="input100">
+                <span class="focus-efecto"></span>
+            </div>
+            <div class="form-group">
+                <input type="text" [(ngModel)]="Dvehiculo.modelo" placeholder="modelo" id="modelo" name="modelo" class="input100">
+                <span class="focus-efecto"></span>
+            </div>
+            <div class="form-group">
+                <input type="text" [(ngModel)]="Dvehiculo.marca" placeholder="marca" id="marca" name="marca" class="input100">
+                <span class="focus-efecto"></span>
+            </div>
+            <br>
+            <div align="center">
+                <button [disabled]="!Blockbtn" class="btnactualizar" (click)="GuardarEdit(Dvehiculo)">Actualizar</button>&nbsp;&nbsp;
+                <button class="btncancelar" (click)="Cancelar()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
